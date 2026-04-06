@@ -40,10 +40,11 @@ body {
 .search-section {
   margin: 30px 0;
   display: flex;
+  gap: 12px;
 }
 
 .search-section select {
-  width: 100%;
+  width: 45%;
   padding: 16px;
   font-size: 18px;
   border: 2px solid #000;
@@ -56,6 +57,33 @@ body {
 .search-section select:focus {
   outline: none;
   border-color: #666;
+}
+
+#productSearch {
+  width: 55%;
+  padding: 16px;
+  font-size: 16px;
+  border: 2px solid #000;
+  border-radius: 8px;
+}
+
+#productSearch:focus {
+  outline: none;
+  border-color: #666;
+}
+
+.view-controls {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: -10px;
+}
+
+.rtl-toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 14px;
+  font-weight: 500;
 }
 
 /* chat section */
@@ -79,6 +107,28 @@ body {
   overflow-y: auto;
   background: #fafafa;
   margin-bottom: 20px;
+  border-radius: 8px;
+}
+
+.chat-message {
+  max-width: 85%;
+  margin-bottom: 12px;
+  padding: 10px 12px;
+  border-radius: 10px;
+  font-size: 15px;
+  line-height: 1.45;
+}
+
+.chat-message.user {
+  margin-left: auto;
+  background: #ffe5ea;
+  border: 1px solid #ff003b;
+}
+
+.chat-message.assistant {
+  margin-right: auto;
+  background: #ffffff;
+  border: 1px solid #ddd;
 }
 
 /* placeholder message */
@@ -186,6 +236,26 @@ body {
   display: flex;
   gap: 15px;
   min-height: 160px;
+  cursor: pointer;
+  transition:
+    transform 0.2s ease,
+    border-color 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.product-card:hover {
+  transform: translateY(-2px);
+  border-color: #777;
+}
+
+.product-card:focus-visible {
+  outline: 3px solid #e3a535;
+  outline-offset: 2px;
+}
+
+.product-card.selected {
+  border: 2px solid #ff003b;
+  box-shadow: 0 4px 12px rgba(255, 0, 59, 0.15);
 }
 
 .product-card img {
@@ -213,6 +283,31 @@ body {
   color: #666;
 }
 
+.product-card .brand {
+  margin-bottom: 10px;
+}
+
+.description-btn {
+  border: 1px solid #000;
+  background: #fff;
+  font-size: 13px;
+  padding: 6px 10px;
+  border-radius: 999px;
+  align-self: flex-start;
+  cursor: pointer;
+}
+
+.description-btn:hover {
+  background: #f4f4f4;
+}
+
+.product-description {
+  margin-top: 8px;
+  font-size: 13px;
+  line-height: 1.45;
+  color: #333;
+}
+
 /* selected products */
 .selected-products {
   margin: 40px 0;
@@ -230,6 +325,56 @@ body {
   display: flex;
   flex-wrap: wrap;
   gap: 10px;
+}
+
+.selected-empty {
+  color: #666;
+}
+
+.selected-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  border: 1px solid #ccc;
+  background: #fff;
+  border-radius: 999px;
+  padding: 8px 12px;
+  font-size: 13px;
+}
+
+.selected-chip button {
+  border: none;
+  background: #111;
+  color: #fff;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+.clear-btn {
+  width: 100%;
+  margin-top: 14px;
+  padding: 12px;
+  font-size: 15px;
+  font-weight: 500;
+  color: #111;
+  background: #f4f4f4;
+  border: 1px solid #aaa;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.clear-btn:hover {
+  background: #ebebeb;
+}
+
+.clear-btn:disabled,
+.generate-btn:disabled,
+.chat-form input:disabled,
+.chat-form button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
 }
 
 .generate-btn {
@@ -252,4 +397,39 @@ body {
 
 .generate-btn i {
   margin-right: 8px;
+}
+
+@media (max-width: 900px) {
+  .product-card {
+    flex: 0 1 calc(50% - 10px);
+  }
+}
+
+@media (max-width: 720px) {
+  .search-section {
+    flex-direction: column;
+  }
+
+  .search-section select,
+  #productSearch {
+    width: 100%;
+  }
+
+  .product-card {
+    flex: 0 1 100%;
+  }
+
+  .chatbox {
+    padding: 18px;
+  }
+}
+
+html[dir="rtl"] .chat-message.user {
+  margin-left: 0;
+  margin-right: auto;
+}
+
+html[dir="rtl"] .chat-message.assistant {
+  margin-right: 0;
+  margin-left: auto;
 }
