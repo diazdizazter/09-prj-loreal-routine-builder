@@ -52,6 +52,7 @@ body {
   cursor: pointer;
   background-color: white;
   font-weight: 500;
+  box-shadow: 0 0 5px rgba(227, 165, 53, 0.4);
 }
 
 .search-section select:focus {
@@ -65,6 +66,7 @@ body {
   font-size: 16px;
   border: 2px solid #000;
   border-radius: 8px;
+  box-shadow: 0 0 5px rgba(227, 165, 53, 0.4);
 }
 
 #productSearch:focus {
@@ -241,6 +243,7 @@ body {
     transform 0.2s ease,
     border-color 0.2s ease,
     box-shadow 0.2s ease;
+  box-shadow: 0 0 5px rgba(227, 165, 53, 0.4);
 }
 
 .product-card:hover {
@@ -314,6 +317,7 @@ body {
   padding: 20px;
   border: 2px solid #000;
   border-radius: 8px;
+  box-shadow: 0 0 5px rgba(227, 165, 53, 0.4);
 }
 
 .selected-products h2 {

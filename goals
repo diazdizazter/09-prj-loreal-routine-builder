@@ -1,5 +1,5 @@
 Project 9 | L'Oréal Product-Aware Routine Builder Chatbot
-L’Oréal is expanding what’s possible with AI, and now your chatbot is getting smarter. This week, you’ll upgrade it into a product-aware routine builder. 
+L’Oréal is expanding what’s possible with AI, and now your chatbot is getting smarter. This week, you’ll upgrade it into a product-aware routine builder.
 Users will be able to browse real L’Oréal brand products, select the ones they want, and generate a personalized routine using AI. They can also ask follow-up questions about their routine, just like chatting with a real advisor.
 
 Project Steps Overview:
@@ -19,9 +19,8 @@ Visually mark selected products in the grid (e.g., with a border or highlight).
 Update the “Selected Products” section as items are added or removed.
 Allow users to remove items directly from the list as well.
 
-
 Reveal Product Description
-Display each product's description in a clear, accessible way. 
+Display each product's description in a clear, accessible way.
 This could be through a hover overlay, toggle button, modal window, expanded card, or other thoughtful UI pattern.
 
 Generate a Personalized Routine. When the user clicks the "Generate Routine" button:
@@ -35,7 +34,7 @@ These questions should relate only to the generated routine or to topics like sk
 The chatbot should remember the full conversation history so it can respond with relevant answers.
 
 Save Selected Products
-Use localStorage to remember which products the user selected, so their list stays visible even after a page reload. 
+Use localStorage to remember which products the user selected, so their list stays visible even after a page reload.
 Users should be able to remove individual items from the saved list or clear all selections at once.
 
 Use Your Cloudflare Worker
@@ -43,7 +42,7 @@ If you already have a Cloudflare Worker set up, continue using it for this proje
 Make sure your script sends requests to your Worker endpoint and returns valid responses.
 
 Ready for a LevelUp? (25 pts extra credit)
-Add Web Search (10 pts): Update your chatbot to use a model that can search the web in real time. The AI’s responses should include current information related to L’Oréal products or routines, along with any links or citations it returns. This may require  updating your Cloudflare Worker or creating a new one for this project.
+Add Web Search (10 pts): Update your chatbot to use a model that can search the web in real time. The AI’s responses should include current information related to L’Oréal products or routines, along with any links or citations it returns. This may require updating your Cloudflare Worker or creating a new one for this project.
 Add Product Search (10 pts): Add a search field that lets users filter through products by name or keyword. As they type, show only the matching products in the grid. This should work alongside the category filter for a seamless browsing experience.
 Add RTL Language Support (5 pts): Update your layout to support right-to-left (RTL) languages. Apply layout and text direction changes so the routine builder works correctly in RTL mode. Make sure the product grid, selected products section, and chat interface all adjust accordingly.
 Test & Submit
@@ -51,12 +50,7 @@ Use DevTools to check functionality and responsiveness across different screen s
 Commit and push your changes to GitHub.
 Deploy your site and submit the live link. Ensure your link works correctly by testing in an incognito or private browser.
 
-
-
-
-chatgpt api 
-
-
+chatgpt api
 
 Your project this week is to create a branded chatbot that helps customers navigate L'Oréal's extensive product catalog and receive tailored recommendations powered by the OpenAI API.
 
@@ -64,14 +58,9 @@ You'll not only implement the functionality but also style your application to r
 
 Take a look at what Guil built as inspiration:
 
- 
-
 A mockup of a L’Oréal-branded chatbot called “Smart Routine & Product Advisor.” The user asks, “What’s the difference between a serum and a treatment product?” The chatbot responds with a friendly, emoji-enhanced explanation. It describes a serum as a lightweight, fast-absorbing liquid for daily use, and a treatment product as a more targeted solution like a cream or mask for issues such as acne or hyperpigmentation. The chatbot signs off by offering to recommend products. The page includes a branded logo, input box, and footer with L’Oréal’s copyright, privacy policy, and contact links.
 
- 
-
 Click Here to Get StartedLinks to an external site.
- 
 
 To submit, download your completed document as a PDF and submit it here. As always, have fun with it!
 
@@ -79,21 +68,15 @@ RESOURCES:
 
 Generate Your OpenAI API Key
 
-
-
 The Global Career Accelerator (org-nDRRrfl8oo7ecYKDMiV6XR9y) on the OpenAI API.
 
 Please make sure to sign up using the email address this invite was sent to: kelley.sims@siu.edu
 
-
-
-
-
-rubric  
+rubric
 
 L'Oréal Product-Aware Routine Builder Chatbot Rubric
 L'Oréal Product-Aware Routine Builder Chatbot Rubric
-Criteria	Ratings	Pts
+Criteria Ratings Pts
 This criterion is linked to a Learning OutcomeProduct Selection
 10 pts
 Full Points
