@@ -1,0 +1,40 @@
+L’Oréal is exploring the power of AI, and your job is to showcase what's possible. Your task is to build a chatbot that helps users discover and understand L’Oréal’s extensive range of products—makeup, skincare, haircare, and fragrances—as well as provide personalized routines and recommendations.
+
+Project Steps Overview:
+Click this starter file link to launch your own Codespace. Your starter code includes:
+HTML for a chat interface with header, footer, chat area, input field, and send button.
+A L’Oréal logo image to use for branding your chatbot.
+Basic CSS styles to structure the layout.
+JavaScript (script.js) handling basic user interaction: capturing input and displaying it in the chat window.
+Cloudflare Worker helper script (RESOURCE_cloudflare-worker.js) pre-configured for secure API communication.
+Add Branding & Customize Appearance
+Add the provided L’Oréal logo to your page.
+Update your CSS styles to use L’Oréal branded colors. Ensure the visual design aligns with L’Oréal’s brand identity.
+Review a case study of L’Oréal fonts from Monotype, a global company specializing in type design and font licensing.
+Obtain Your API Key
+Get your OpenAI API key from the OpenAI dashboard. Temporarily store your key in a local file called secrets.js within your Codespace.
+Configure the Chatbot
+Write a clear, concise system prompt for your chatbot that guides it to only answer questions related to L’Oréal products, routines, and recommendations.
+Modify the JavaScript (script.js) to:
+Capture user input from the chat interface.
+Send requests to OpenAI's Chat Completions API.
+Display chatbot responses clearly within the chat interface.
+Ensure AI Relevance
+Configure your AI to politely refuse to answer questions unrelated to L’Oréal products, routines, recommendations, beauty-related topics, etc.
+Create a Cloudflare Worker & Secure Your API Key
+Create a Cloudflare Worker for your project.
+Securely store your API key in Cloudflare under "Variables and Secrets."
+Deploy your Cloudflare Worker using the provided helper script (RESOURCE_cloudflare-worker.js).
+Watch the video "Protecting Your API Key with Cloudflare" in the 🍿AI Privacy and Safety Skillbuilder if you need a refresher on deploying securely.
+Note the Cloudflare Worker URL provided after deployment.
+Update Your Chatbot to Use Cloudflare Worker Endpoint
+Update your JavaScript (script.js) to send requests to your deployed Cloudflare Worker endpoint URL instead of directly to OpenAI.
+Verify that your chatbot correctly communicates through your Cloudflare Worker.
+Ready for a LevelUp? (25 pts extra credit)
+Maintain Conversation History (10 pts): Enable your chatbot to track the context of the conversation, including details like the user's name and past questions, to support natural, multi-turn interactions.
+Display User Question (5 pts): Display the user's latest question just above the chat response, like in the project preview image. It resets with each new question.
+Chat Conversation UI (10 pts): Design your chatbot interface to mimic a real conversation, using distinct message bubbles for user and assistant messages. This layout enhances readability and provides a familiar chat experience.
+Test & Submit
+Use DevTools to check functionality and responsiveness across different screen sizes.
+Commit and push your changes to GitHub.
+Deploy your site and submit the live link. Ensure your link works correctly by testing in an incognito or private browser.

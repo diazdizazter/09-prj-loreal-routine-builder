@@ -81,6 +81,29 @@ The application uses L'Oréal's distinctive visual identity:
 - **Data**: JSON product database with real L'Oréal brands (CeraVe, L'Oréal Paris, Garnier, Lancôme, etc.)
 - **Storage**: Local Storage API for persistence
 
+## ☁️ Cloudflare Worker Setup
+
+1. Install Wrangler and log in.
+
+```bash
+npm install -g wrangler
+wrangler login
+```
+
+1. Add your OpenAI key as a Cloudflare secret.
+
+```bash
+wrangler secret put OPENAI_API_KEY
+```
+
+1. Deploy the worker.
+
+```bash
+wrangler deploy
+```
+
+The frontend in [script.js](script.js) already points to your Worker URL.
+
 ## 📁 Project Structure
 
 ```text

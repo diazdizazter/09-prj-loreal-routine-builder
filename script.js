@@ -15,7 +15,8 @@ const userInput = document.getElementById("userInput");
   App state
 ------------------------------ */
 const STORAGE_KEY = "lorealSelectedProducts";
-const WORKER_URL = "https://09-prj-loreal-routine-builder.edwin-kelsi54.workers.dev";
+const WORKER_URL =
+  "https://09-prj-loreal-routine-builder.edwin-kelsi54.workers.dev";
 
 let allProducts = [];
 let selectedIds = new Set();
