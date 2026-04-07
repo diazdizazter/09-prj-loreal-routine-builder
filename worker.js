@@ -56,14 +56,17 @@ async function handleRequest(request) {
     });
   }
 
-  const openAiResponse = await fetch("https://api.openai.com/v1/chat/completions", {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-      Authorization: `Bearer ${OPENAI_API_KEY}`,
+  const openAiResponse = await fetch(
+    "https://api.openai.com/v1/chat/completions",
+    {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${OPENAI_API_KEY}`,
+      },
+      body: JSON.stringify({ model, messages }),
     },
-    body: JSON.stringify({ model, messages }),
-  });
+  );
 
   const responseText = await openAiResponse.text();
 
