@@ -35,7 +35,7 @@ git clone https://github.com/GCA-Classroom/09-prj-loreal-routine-builder.git
 cd 09-prj-loreal-routine-builder
 ```
 
-2. Open `index.html` in your browser or serve locally
+1. Open `index.html` in your browser or serve locally
 
 ```bash
 python -m http.server 8000
@@ -83,7 +83,7 @@ The application uses L'Oréal's distinctive visual identity:
 
 ## 📁 Project Structure
 
-```
+```text
 09-prj-loreal-routine-builder/
 ├── index.html          # Main HTML structure
 ├── style.css           # Styling and design
@@ -92,12 +92,6 @@ The application uses L'Oréal's distinctive visual identity:
 ├── img/                # Brand assets (logos, etc.)
 └── README.md          # This file
 ```
-
-## 📝 Extra Credit Features (Optional)
-
-- **Web Search Integration** (10 pts): Real-time web search capability with citations
-- **Advanced Product Search** (10 pts): Enhanced filtering with autocomplete
-- **RTL Language Support** (5 pts): Full right-to-left layout support
 
 ## 🤝 Contributing
 
