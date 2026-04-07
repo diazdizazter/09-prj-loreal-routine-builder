@@ -22,18 +22,21 @@ Visit the live application: [L'Oréal Smart Routine & Product Advisor](https://d
 ## 🛠️ Getting Started
 
 ### Prerequisites
+
 - Modern web browser (Chrome, Firefox, Safari, Edge)
 - OpenAI API key (for the backend Cloudflare Worker)
 
 ### Installation
 
 1. Clone the repository
+
 ```bash
 git clone https://github.com/GCA-Classroom/09-prj-loreal-routine-builder.git
 cd 09-prj-loreal-routine-builder
 ```
 
 2. Open `index.html` in your browser or serve locally
+
 ```bash
 python -m http.server 8000
 # Then visit http://localhost:8000
@@ -42,18 +45,21 @@ python -m http.server 8000
 ## 🎯 Core Functionality
 
 ### Product Selection
+
 - Browse products organized by category
 - Click product cards to select/unselect items
 - Visual indicators show selected products
 - Manage selections in the "Selected Products" section
 
 ### Routine Generation
+
 - Select products you want to use
 - Click "Generate Routine" to send product data to OpenAI
 - Receive a personalized routine based on your selections
 - All responses are generated using OpenAI's GPT-4o model
 
 ### Chat Interface
+
 - Ask questions about your generated routine
 - Get skincare, haircare, makeup, fragrance advice
 - Full conversation history is maintained
@@ -62,6 +68,7 @@ python -m http.server 8000
 ## 🎨 Design & Branding
 
 The application uses L'Oréal's distinctive visual identity:
+
 - **Brand Colors**: Red (#ff003b) and Gold (#e3a535)
 - **Typography**: Roman serif font (elegant, sophisticated) with geometric sans-serif accents
 - **Visual Style**: Clean, modern interface with subtle gold shadows on interactive elements

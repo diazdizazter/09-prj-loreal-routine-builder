@@ -74,20 +74,6 @@ body {
   border-color: #666;
 }
 
-.view-controls {
-  display: flex;
-  justify-content: flex-end;
-  margin-top: -10px;
-}
-
-.rtl-toggle {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  font-size: 14px;
-  font-weight: 500;
-}
-
 /* chat section */
 .chatbox {
   margin: 40px 0;

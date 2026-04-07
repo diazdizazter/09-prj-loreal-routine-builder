@@ -10,7 +10,6 @@ const generateRoutineBtn = document.getElementById("generateRoutine");
 const chatForm = document.getElementById("chatForm");
 const chatWindow = document.getElementById("chatWindow");
 const userInput = document.getElementById("userInput");
-const rtlToggle = document.getElementById("rtlToggle");
 
 /* -----------------------------
   App state
@@ -32,6 +31,23 @@ let messages = [
       "You are a helpful L'Oreal routine advisor. Keep responses focused on the user's selected routine, skincare, haircare, makeup, fragrance, and related beauty topics. Be clear and practical.",
   },
 ];
+
+function hasRtlCharacters(text) {
+  return /[\u0590-\u08FF\uFB1D-\uFDFD\uFE70-\uFEFC]/.test(text);
+}
+
+function setDocumentDirectionFromText(text) {
+  if (!text) {
+    return;
+  }
+
+  document.documentElement.dir = hasRtlCharacters(text) ? "rtl" : "ltr";
+}
+
+function setInitialDirectionFromBrowserLanguage() {
+  const language = (navigator.language || "").toLowerCase();
+  document.documentElement.dir = language.startsWith("ar") ? "rtl" : "ltr";
+}
 
 /* -----------------------------
   Storage helpers
@@ -382,12 +398,13 @@ chatForm.addEventListener("submit", async (event) => {
     return;
   }
 
+  setDocumentDirectionFromText(question);
   userInput.value = "";
   await handleFollowUpQuestion(question);
 });
 
-rtlToggle.addEventListener("change", (event) => {
-  document.documentElement.dir = event.target.checked ? "rtl" : "ltr";
+userInput.addEventListener("input", (event) => {
+  setDocumentDirectionFromText(event.target.value);
 });
 
 /* -----------------------------
@@ -395,6 +412,7 @@ rtlToggle.addEventListener("change", (event) => {
 ------------------------------ */
 async function init() {
   try {
+    setInitialDirectionFromBrowserLanguage();
     await loadProducts();
     loadSelectedProducts();
     renderProducts();
