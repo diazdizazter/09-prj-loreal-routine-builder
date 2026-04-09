@@ -47,7 +47,8 @@ export default {
       });
     }
 
-    const model = body.model || "gpt-4o";
+    // Keep the project locked to GPT-4o to match class instructions.
+    const model = "gpt-4o";
     const messages = Array.isArray(body.messages) ? body.messages : [];
 
     if (messages.length === 0) {
