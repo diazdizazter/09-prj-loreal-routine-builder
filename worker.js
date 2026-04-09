@@ -6,7 +6,6 @@ export default {
       "Access-Control-Allow-Headers": "Content-Type",
     };
 
-    // Handle preflight request
     if (request.method === "OPTIONS") {
       return new Response(null, {
         status: 204,

@@ -1,19 +1,14 @@
-#!/usr/bin/env bash
+
 set -euo pipefail
 
-# Usage:
-#   ./worker-debug.sh                 # use worker in wrangler.jsonc
-#   ./worker-debug.sh <worker-name>  # tail a specific worker name
-#   
-         # login in headless mode (no auto-browser)
-#
-# Optional:
+#   ./worker-debug.sh                
+#   ./worker-debug.sh <worker-name>  
+#   ./worker-debug.sh --login
 #   ./worker-debug.sh --format json
 
 if command -v wrangler >/dev/null 2>&1; then
   WRANGLER_CMD=(wrangler)
 else
-  # -y prevents the npx install confirmation prompt.
   WRANGLER_CMD=(npx -y wrangler@4.80.0)
 fi
 
