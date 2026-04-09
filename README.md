@@ -83,6 +83,20 @@ The application uses L'Oréal's distinctive visual identity:
 
 ## ☁️ Cloudflare Worker Setup
 
+1. Create local secret files from the examples.
+
+```bash
+cp .dev.vars.example .dev.vars
+cp .env.example .env
+```
+
+1. Put your real keys in local-only files.
+
+- In `.dev.vars`: set `OPENAI_API_KEY` for local worker development.
+- In `.env`: set `CLOUDFLARE_API_TOKEN` for CLI deploy/auth.
+
+These files are gitignored by default and should never be committed.
+
 1. Install Wrangler and log in.
 
 ```bash
@@ -103,6 +117,13 @@ wrangler deploy
 ```
 
 The frontend in [script.js](script.js) already points to your Worker URL.
+
+### 🔐 Secret Safety Checklist
+
+- Never hardcode API keys in `worker.js`, `script.js`, or any tracked file.
+- If a key is ever pasted into chat, logs, or git history, rotate it immediately.
+- Keep OpenAI keys in Worker secrets or local `.dev.vars` only.
+- Keep Cloudflare API tokens in local `.env` only.
 
 ## 📁 Project Structure
 
