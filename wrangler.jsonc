@@ -4,9 +4,6 @@
   "main": "worker.js",
   "account_id": "e2266187aec35451f899de5ede6edba8",
   "compatibility_date": "2026-04-07",
-  "observability": {
-    "enabled": true,
-  },
   "compatibility_flags": ["nodejs_compat"],
 }
 
