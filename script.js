@@ -25,11 +25,15 @@ let routineWasGenerated = false;
 let isRequestInFlight = false;
 
 /* Keep full conversation history for context-aware follow-up answers */
+const SYSTEM_MESSAGE_CONTENT =
+  "You are a helpful L'Oréal routine advisor. Keep responses focused on the user's selected routine, skincare, haircare, makeup, fragrance, and related beauty topics. Be clear and practical.";
+const MAX_CONTEXT_MESSAGES = 12;
+const MAX_USER_INPUT_LENGTH = 500;
+
 let messages = [
   {
     role: "system",
-    content:
-      "You are a helpful L'Oreal routine advisor. Keep responses focused on the user's selected routine, skincare, haircare, makeup, fragrance, and related beauty topics. Be clear and practical.",
+    content: SYSTEM_MESSAGE_CONTENT,
   },
 ];
 
@@ -48,6 +52,21 @@ function setDocumentDirectionFromText(text) {
 function setInitialDirectionFromBrowserLanguage() {
   const language = (navigator.language || "").toLowerCase();
   document.documentElement.dir = language.startsWith("ar") ? "rtl" : "ltr";
+}
+
+function limitConversationHistory(history) {
+  const systemMessage = history.find(
+    (message) => message.role === "system",
+  ) || {
+    role: "system",
+    content: SYSTEM_MESSAGE_CONTENT,
+  };
+
+  const nonSystemMessages = history.filter(
+    (message) => message.role !== "system",
+  );
+
+  return [systemMessage, ...nonSystemMessages.slice(-MAX_CONTEXT_MESSAGES)];
 }
 
 /* -----------------------------
@@ -213,6 +232,8 @@ async function requestChatCompletion(updatedMessages) {
     );
   }
 
+  const limitedMessages = limitConversationHistory(updatedMessages);
+
   const response = await fetch(WORKER_URL, {
     method: "POST",
     headers: {
@@ -220,7 +241,7 @@ async function requestChatCompletion(updatedMessages) {
     },
     body: JSON.stringify({
       model: "gpt-4o",
-      messages: updatedMessages,
+      messages: limitedMessages,
     }),
   });
 
@@ -273,7 +294,7 @@ async function generateRoutine() {
   try {
     const routineText = await requestChatCompletion(updatedMessages);
     messages = [
-      ...updatedMessages,
+      ...limitConversationHistory(updatedMessages),
       { role: "assistant", content: routineText },
     ];
     routineWasGenerated = true;
@@ -287,6 +308,14 @@ async function generateRoutine() {
 
 async function handleFollowUpQuestion(question) {
   if (isRequestInFlight) {
+    return;
+  }
+
+  if (question.length > MAX_USER_INPUT_LENGTH) {
+    appendMessage(
+      "assistant",
+      "Please keep follow-up questions under 500 characters so the request stays small.",
+    );
     return;
   }
 
@@ -305,7 +334,10 @@ async function handleFollowUpQuestion(question) {
 
   try {
     const answer = await requestChatCompletion(updatedMessages);
-    messages = [...updatedMessages, { role: "assistant", content: answer }];
+    messages = [
+      ...limitConversationHistory(updatedMessages),
+      { role: "assistant", content: answer },
+    ];
     appendMessage("assistant", answer);
   } catch (error) {
     appendMessage(
@@ -399,6 +431,14 @@ chatForm.addEventListener("submit", async (event) => {
     return;
   }
 
+  if (question.length > MAX_USER_INPUT_LENGTH) {
+    appendMessage(
+      "assistant",
+      "Please keep follow-up questions under 500 characters so the request stays small.",
+    );
+    return;
+  }
+
   setDocumentDirectionFromText(question);
   userInput.value = "";
   await handleFollowUpQuestion(question);
@@ -416,6 +456,7 @@ async function init() {
     setInitialDirectionFromBrowserLanguage();
     await loadProducts();
     loadSelectedProducts();
+    messages = limitConversationHistory(messages);
     renderProducts();
     renderSelectedProducts();
 
