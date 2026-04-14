@@ -1,5 +1,4 @@
 {
-  "$schema": "https://raw.githubusercontent.com/cloudflare/workers-sdk/main/schemas/config-schema.json",
   "name": "09-prj-loreal-routine-builder",
   "main": "worker.js",
   "account_id": "e2266187aec35451f899de5ede6edba8",
@@ -8,6 +7,6 @@
 }
 
 // wrangler deploy
-//  npx wrangler deployv
+// npx wrangler deploy
 // npm install -g wrangler
 // wrangler login
