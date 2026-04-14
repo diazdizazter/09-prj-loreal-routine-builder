@@ -30,12 +30,36 @@ const SYSTEM_MESSAGE_CONTENT =
 const MAX_CONTEXT_MESSAGES = 12;
 const MAX_USER_INPUT_LENGTH = 500;
 
+// Rate limiting: wait 1.5 seconds between API requests to avoid "too many requests" errors
+const API_REQUEST_DELAY_MS = 1500;
+let lastApiRequestTime = 0;
+
 let messages = [
   {
     role: "system",
     content: SYSTEM_MESSAGE_CONTENT,
   },
 ];
+
+// Helper function: Sleep for a specified number of milliseconds
+function sleep(ms) {
+  return new Promise((resolve) => setTimeout(resolve, ms));
+}
+
+// Helper function: Enforce rate limiting to prevent API errors
+async function enforceApiRateLimit() {
+  const now = Date.now();
+  const timeSinceLastRequest = now - lastApiRequestTime;
+
+  // If less than 1.5 seconds have passed, wait for the remaining time
+  if (timeSinceLastRequest < API_REQUEST_DELAY_MS) {
+    const delayNeeded = API_REQUEST_DELAY_MS - timeSinceLastRequest;
+    await sleep(delayNeeded);
+  }
+
+  // Update the last request time
+  lastApiRequestTime = Date.now();
+}
 
 function hasRtlCharacters(text) {
   return /[\u0590-\u08FF\uFB1D-\uFDFD\uFE70-\uFEFC]/.test(text);
@@ -231,6 +255,9 @@ async function requestChatCompletion(updatedMessages) {
       "Worker URL is missing. Add your Cloudflare Worker URL in script.js.",
     );
   }
+
+  // Apply rate limiting before making the API request
+  await enforceApiRateLimit();
 
   const limitedMessages = limitConversationHistory(updatedMessages);
 

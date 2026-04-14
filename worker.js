@@ -5,6 +5,30 @@ const MAX_CONTEXT_MESSAGES = 12;
 const MAX_MESSAGE_CHARS = 2000;
 const MAX_COMPLETION_TOKENS = 500;
 
+// Rate limiting: wait 1.5 seconds between OpenAI API requests to avoid rate limit errors
+const API_REQUEST_DELAY_MS = 1500;
+let lastOpenAiRequestTime = 0;
+
+// Helper function: Wait for a specified number of milliseconds
+function sleep(ms) {
+  return new Promise((resolve) => setTimeout(resolve, ms));
+}
+
+// Helper function: Enforce rate limiting before OpenAI API calls
+async function enforceApiRateLimit() {
+  const now = Date.now();
+  const timeSinceLastRequest = now - lastOpenAiRequestTime;
+
+  // If less than 1.5 seconds have passed, wait for the remaining time
+  if (timeSinceLastRequest < API_REQUEST_DELAY_MS) {
+    const delayNeeded = API_REQUEST_DELAY_MS - timeSinceLastRequest;
+    await sleep(delayNeeded);
+  }
+
+  // Update the last request time
+  lastOpenAiRequestTime = Date.now();
+}
+
 function buildCorsHeaders() {
   return {
     "Access-Control-Allow-Origin": "*",
@@ -110,6 +134,9 @@ var worker_default = {
 
       const body = JSON.parse(requestText);
       const messages = buildSafeMessages(body.messages);
+
+      // Apply rate limiting before making the OpenAI API request
+      await enforceApiRateLimit();
 
       const openaiResponse = await fetch(
         "https://api.openai.com/v1/chat/completions",
